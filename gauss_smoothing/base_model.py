@@ -32,7 +32,7 @@ class Base_Model(ABC):
         return np.sqrt(np.mean(np.square(y_pred - y_true)))
 
     # plotting function for standardized plot results
-    def plot_loss(self, t_loss, v_loss, title, folder='./imgs/'):
+    def plot_loss(self, t_loss, v_loss, title, folder='imgs/'):
         fig, ax = plt.subplots(figsize=(5,5))
         ax.set_title(title, loc='center', pad=15, wrap=True)
         time = range(len(t_loss))
@@ -50,7 +50,7 @@ class Base_Model(ABC):
         plt.savefig(f'{folder}{title}.png')
 
     # plotting function for standardized plot results
-    def plot_results(self, preds, actual, title, folder='./imgs/'):
+    def plot_results(self, preds, actual, title, folder='imgs/'):
         fig, ax = plt.subplots(figsize=(15,5))
         ax.set_title(title)
         time = range(len(preds))

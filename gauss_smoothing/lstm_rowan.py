@@ -79,4 +79,4 @@ if __name__ == "__main__":
               'sigma': 10}
     
     test = Test(Model=LSTM_Rowan, Train_Predictor=Vstack_Train_Predictor, params=params, tests=window_heavy_hitters_tests, plot=True)
-    test.rolling_window_test('./forecasting_rnns/results/Rowan-Std-500-HighLowOpenClose-2/')
+    test.rolling_window_test('imgs/')
