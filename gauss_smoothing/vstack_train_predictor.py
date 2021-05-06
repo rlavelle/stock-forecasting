@@ -43,7 +43,7 @@ class Vstack_Train_Predictor(Base_Train_Predictor):
         self.train_obs = self.train_obs.reshape(-1,1)
         
         # standardize data
-        self.scaler = StandardScaler()
+        self.scaler = MinMaxScaler()
         self.scaler = self.scaler.fit(self.train_obs)
         self.train_obs = self.scaler.transform(self.train_obs)
 
@@ -80,14 +80,12 @@ class Vstack_Train_Predictor(Base_Train_Predictor):
 
     def predict(self, model, test_data, label_column_index=None):
         true_vals = test_data['close'].values
-        true_scaled_vals = self.scaler.transform(true_vals.reshape(-1,1))
         
         # Save train data and scaler obj because we will need it for testing
         test_obs = test_data['close'].values
 
         # standardize data
         test_obs = self.scaler.transform(test_obs.reshape(-1,1))
-        # test_obs = np.log(test_obs)
 
         # gaussian smoothing kernel
         test_obs = gaussian_filter(test_obs, sigma=self.sigma)
@@ -98,12 +96,13 @@ class Vstack_Train_Predictor(Base_Train_Predictor):
         preds = []
 
         for i in range(len(test_data)):
-            pred_std_close = model.predict(observed.reshape(1,self.d,1))
+            pred_close = model.predict(observed.reshape(1,self.d,1))
             observed = np.vstack((observed,test_obs[i]))
             observed = observed[1:]
 
-            preds.append(pred_std_close.reshape(1,))
+            pred = self.scaler.inverse_transform(pred_close)
+            preds.append(pred.reshape(1,))
             
             print(f'{i+1}/{len(test_data)}', end='\r', flush=True)
 
-        return np.array(preds).flatten(), true_scaled_vals
+        return np.array(preds).flatten(), true_vals
