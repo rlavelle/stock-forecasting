@@ -76,7 +76,7 @@ if __name__ == "__main__":
               'fill_method': 'previous',
               'normalization': True,
               'window_scaling': False,
-              'sigma': 10}
+              'sigma': 2.5}
     
     test = Test(Model=LSTM_Rowan, Train_Predictor=Vstack_Train_Predictor, params=params, tests=window_heavy_hitters_tests, plot=True)
     test.rolling_window_test('imgs/')
