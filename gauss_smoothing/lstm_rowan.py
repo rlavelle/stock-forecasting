@@ -1,5 +1,4 @@
 from fastquant import get_stock_data
-import quandl
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
