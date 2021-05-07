@@ -91,7 +91,7 @@ class GHMM(Model):
 
 if __name__ == "__main__":
     components = [2,3,4,5,6,7,8,9]
-    latency = [2,3,4,5,6,7,8,9,10,11,12,13,14,15]
+    latency = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
 
     best = {'params': None, 'aamape':math.inf}
 
@@ -101,7 +101,7 @@ if __name__ == "__main__":
             params = {'n_components': n_components, 
                     'algorithm': 'map', 
                     'n_iter': 100, 
-                    'd': latency,
+                    'd': d,
                     'name':'GHMM'}
     
             test = Test(Model=GHMM, params=params, tests=rolling_window_tests, f='grid-search.json', plot=False)
