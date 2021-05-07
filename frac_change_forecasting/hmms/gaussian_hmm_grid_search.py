@@ -94,9 +94,10 @@ if __name__ == "__main__":
     latency = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
 
     best = {'params': None, 'aamape':math.inf}
-    
+
     for n_components in components:
         for d in latency:
+            print(f'n_components {n_components}, d {d}')
             params = {'n_components': n_components, 
                     'algorithm': 'map', 
                     'n_iter': 100, 
