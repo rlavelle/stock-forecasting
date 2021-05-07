@@ -188,6 +188,8 @@ class Test:
         output_file.write(dump)
         output_file.close()
 
+        return self.results
+
 if __name__ == "__main__":
     test = rolling_window_tests['test6']['window']
     df = get_stock_data(test['ticker'],test['start'],test['end'])
