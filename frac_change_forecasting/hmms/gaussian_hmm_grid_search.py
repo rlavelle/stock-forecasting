@@ -90,6 +90,8 @@ class GHMM(Model):
 
 
 if __name__ == "__main__":
+    # {'n_components': 3, 'algorithm': 'map', 'n_iter': 100, 'd': 1, 'name': 'GHMM'}
+    # 0.8135875247751955
     components = [2,3,4,5,6,7,8,9]
     latency = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
 
