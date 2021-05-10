@@ -104,20 +104,20 @@ if __name__ == "__main__":
               'algorithm': 'map', 
               'n_iter': 100, 
               'd': 5,
-              'name':'GHMM-RAW'}
+              'name':'GHMM-CLOSE'}
     
     # ghmm = GHMM(params=params)
     # train = ghmm.get_data('AAPL', '2020-01-01', '2021-01-01')
     # print(ghmm.data_prep(train))
     
     print('testing best found parameters paper tests')
-    test = Test(Model=GHMM, params=params, tests=paper_tests, f='ghmm-raw-paper-tests.json', plot=True)
+    test = Test(Model=GHMM, params=params, tests=paper_tests, f='ghmm-close-paper-tests.json', plot=True)
     test.fixed_origin_tests()
 
     print('testing best found parameters own tests')
-    test = Test(Model=GHMM, params=params, tests=own_tests, f='ghmm-raw-own-tests.json', plot=True)
+    test = Test(Model=GHMM, params=params, tests=own_tests, f='ghmm-close-own-tests.json', plot=True)
     test.fixed_origin_tests()
 
     print('testing')
-    test = Test(Model=GHMM, params=params, tests=rolling_window_tests, f='ghmm-raw-rolling-tests.json', plot=True)
+    test = Test(Model=GHMM, params=params, tests=rolling_window_tests, f='ghmm-close-rolling-tests.json', plot=True)
     test.rolling_window_test()
