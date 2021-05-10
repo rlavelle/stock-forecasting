@@ -30,8 +30,12 @@ class GHMM(Model):
         self.model.fit(self.train_obs)
     
     def predict(self,test_data):
-        row = pd.DataFrame(self.train_data.iloc[-1], index=[0])
-        test_data = pd.concat([row,test_data]).reset_index(drop=True)         
+        # add last training point ot testing data, first point is NaN
+        last = self.train_data.iloc[-1].to_dict()
+        row = pd.DataFrame(last, index=[0])
+        row['dt'] = None
+        test_data = test_data.reset_index()
+        test_data = pd.concat([row,test_data], ignore_index=True)
         test_close_prices = test_data['close'].values
         test_obs = self.data_prep(test_data).values
 
