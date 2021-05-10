@@ -20,6 +20,8 @@ class GHMM(Model):
         self.d = params['d']
     
     def train(self, train_data):
+        self.train_data = train_data
+        self.train = train_data['close'].values
         self.train_obs = self.data_prep(train_data)
         self.model = hmm.GaussianHMM(n_components=self.n_components,
                                      algorithm=self.algorithm,
@@ -27,9 +29,9 @@ class GHMM(Model):
 
         self.model.fit(self.train_obs)
     
-    def predict(self,test_data):        
+    def predict(self,test_data):
+        test_data = self.train_data.iloc[-1].append(test_data)         
         test_close_prices = test_data['close'].values
-        test_open_prices = test_data['open'].values
         test_obs = self.data_prep(test_data).values
 
         # use a latency of d days. So observations start as training data
@@ -65,8 +67,11 @@ class GHMM(Model):
             observed = np.vstack((observed,test_obs[i]))
             observed = observed[1:]
 
-            #calculate the close value from best
-            pred_close = best['obs'][0]*test_open_prices[i]+test_open_prices[i]
+            # calculate the close value from best using the previous days close price instead of next days opening
+            if i == 0:
+                pred_close = best['obs'][0]*self.train[-1]+self.train[-1]
+            else:
+                pred_close = best['obs'][0]*test_close_prices[i-1]+test_close_prices[i-1]
             preds.append(pred_close)
 
             print(f'{i+1}/{len(test_data)}',end='\r',flush=True)
@@ -84,35 +89,30 @@ class GHMM(Model):
     
     def data_prep(self, data):
         df = pd.DataFrame(data=None, columns=['fracChange'])
-        df['fracChange'] = (data['close']-data['open'])/data['open']
+        df['fracChange'] = data['close'].pct_change().multiply(100).iloc[1:]
 
         return df
 
 
 if __name__ == "__main__":
-    # {'n_components': 3, 'algorithm': 'map', 'n_iter': 100, 'd': 1, 'name': 'GHMM'}
-    # 0.8135875247751955
-    components = [2,3,4,5,6,7,8,9]
-    latency = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
-
-    best = {'params': None, 'aamape':math.inf}
-
-    for n_components in components:
-        for d in latency:
-            print(f'n_components {n_components}, d {d}')
-            params = {'n_components': n_components, 
-                    'algorithm': 'map', 
-                    'n_iter': 100, 
-                    'd': d,
-                    'name':'GHMM'}
+    params = {'n_components': 2, 
+              'algorithm': 'map', 
+              'n_iter': 100, 
+              'd': 5,
+              'name':'GHMM-RAW'}
     
-            test = Test(Model=GHMM, params=params, tests=rolling_window_tests, f='grid-search.json', plot=False)
-            results = test.rolling_window_test()
-            aamape = sum(results.values())/len(results)
+    # ghmm = GHMM(params=params)
+    # train = ghmm.get_data('AAPL', '2020-01-01', '2021-01-01')
+    # print(ghmm.data_prep(train))
+    
+    print('testing best found parameters paper tests')
+    test = Test(Model=GHMM, params=params, tests=paper_tests, f='ghmm-raw-paper-tests.json', plot=True)
+    test.fixed_origin_tests()
 
-            if aamape < best['aamape']:
-                best['params'] = params
-                best['aamape'] = aamape
+    print('testing best found parameters own tests')
+    test = Test(Model=GHMM, params=params, tests=own_tests, f='ghmm-raw-own-tests.json', plot=True)
+    test.fixed_origin_tests()
 
-    print(best['params'])
-    print(best['aamape'])
+    print('testing')
+    test = Test(Model=GHMM, params=params, tests=rolling_window_tests, f='ghmm-raw-rolling-tests.json', plot=True)
+    test.rolling_window_test()

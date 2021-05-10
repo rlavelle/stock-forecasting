@@ -39,21 +39,21 @@ class SMA(Model):
             observed = observed[1:]
 
             preds.append(pred_close)
-
+ 
             print(f'{i+1}/{len(test_data)}',end='\r',flush=True)
         print('DONE')
         return preds,test_close_prices
 
 
 if __name__ == "__main__":
-    params = {'d': 10,
+    params = {'d': 3,
               'name': 'SMA-10'}
     
-    test = Test(Model=SMA, params=params, tests=paper_tests, f='sma-10-paper-tests.json', plot=True)
+    test = Test(Model=SMA, params=params, tests=paper_tests, f='sma-3-paper-tests.json', plot=True)
     test.fixed_origin_tests()
 
-    test = Test(Model=SMA, params=params, tests=own_tests, f='sma-10-own-tests.json', plot=True)
+    test = Test(Model=SMA, params=params, tests=own_tests, f='sma-3-own-tests.json', plot=True)
     test.fixed_origin_tests()
 
-    test = Test(Model=SMA, params=params, tests=rolling_window_tests, f='sma-10-rolling-tests.json', plot=True)
+    test = Test(Model=SMA, params=params, tests=rolling_window_tests, f='sma-3-rolling-tests.json', plot=True)
     test.rolling_window_test()
