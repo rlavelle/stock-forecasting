@@ -75,15 +75,12 @@ class GHMM(Model):
             observed = observed[1:]
 
             # calculate the close value from best using the previous days close price instead of next days opening
-            if i == 0:
-                pred_close = best['obs'][0]*self.train[-1]+self.train[-1]
-            else:
-                pred_close = best['obs'][0]*test_close_prices[i-1]+test_close_prices[i-1]
+            pred_close = best['obs'][0]
             preds.append(pred_close)
 
             print(f'{i+1}/{len(test_data)}',end='\r',flush=True)
         print('DONE')
-        return preds,test_close_prices
+        return preds,test_obs
     
     def log_lik_calc(self, observed, observations):
         log_liks = []
