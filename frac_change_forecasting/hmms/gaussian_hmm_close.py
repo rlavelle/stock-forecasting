@@ -54,7 +54,7 @@ class GHMM(Model):
         change = np.random.normal(loc=mean, scale=std, size=10000)
         
         # loop through all points we want to test
-        for i in range(len(test_data)):
+        for i in range(len(test_obs)):
 
             observations = [np.array([c]) for c in change]
             
