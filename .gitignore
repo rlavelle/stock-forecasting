@@ -1,3 +1,5 @@
+# ignore password
+pass.txt
 # ds store file for apple
 .DS_Store
 # ignore API tokens
