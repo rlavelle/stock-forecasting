@@ -66,12 +66,12 @@ class GHMM(Model):
             observed = observed[1:]
 
             #calculate the close value from best
-            pred_close = best['obs'][0]*test_open_prices[i]+test_open_prices[i]
+            pred_close = best['obs'][0]
             preds.append(pred_close)
 
             print(f'{i+1}/{len(test_data)}',end='\r',flush=True)
         print('DONE')
-        return preds,test_close_prices
+        return preds,test_obs
     
     def log_lik_calc(self, observed, observations):
         log_liks = []
