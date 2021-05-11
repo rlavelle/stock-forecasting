@@ -37,7 +37,7 @@ class GHMM(Model):
         
         # list to hold predictions
         preds = []
-
+        pred_change = []
         # sample 10k points from the fracChange distribution of the training data as our possible next days
         np.random.seed(seed=47)
         mean = self.train_obs['fracChange'].mean()
@@ -68,10 +68,11 @@ class GHMM(Model):
             #calculate the close value from best
             pred_close = best['obs'][0]*test_open_prices[i]+test_open_prices[i]
             preds.append(pred_close)
+            pred_change.append(best['obs'][0])
 
             print(f'{i+1}/{len(test_data)}',end='\r',flush=True)
         print('DONE')
-        return preds,test_close_prices
+        return preds,pred_change,test_close_prices
     
     def log_lik_calc(self, observed, observations):
         log_liks = []
