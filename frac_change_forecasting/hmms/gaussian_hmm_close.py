@@ -44,6 +44,7 @@ class GHMM(Model):
         # use a latency of d days. So observations start as training data
         observed = self.train_obs.iloc[-self.d:].values
         
+        print(observed)
         # list to hold predictions
         preds = []
 
@@ -52,6 +53,10 @@ class GHMM(Model):
         mean = self.train_obs['fracChange'].mean()
         std = self.train_obs['fracChange'].std()
         change = np.random.normal(loc=mean, scale=std, size=10000)
+        fig, ax = plt.subplots(figsize=(10,5))
+        ax.hist(change,bins=100)
+        ax.set_xlabel('fractional change')
+        plt.show()
         
         # loop through all points we want to test
         for i in range(len(test_obs)):
@@ -73,6 +78,7 @@ class GHMM(Model):
             # drop the first thing in observed to shift our latency window `d`
             observed = np.vstack((observed,test_obs[i]))
             observed = observed[1:]
+            print(observed)
 
             # calculate the close value from best using the previous days close price instead of next days opening
             if i == 0:
@@ -81,8 +87,8 @@ class GHMM(Model):
                 pred_close = best['obs'][0]*test_close_prices[i-1]+test_close_prices[i-1]
             preds.append(pred_close)
 
-            print(f'{i+1}/{len(test_data)}',end='\r',flush=True)
-        print('DONE')
+            #print(f'{i+1}/{len(test_data)}',end='\r',flush=True)
+        #print('DONE')
         return preds,test_close_prices
     
     def log_lik_calc(self, observed, observations):
