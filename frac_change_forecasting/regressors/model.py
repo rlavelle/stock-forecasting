@@ -67,7 +67,7 @@ class Model(ABC):
         return (1.0)/(len(y_pred))*((np.abs(y_pred-y_true)/np.abs(y_true))*100).sum()
 
     # percent change for data
-    def data_prep(data):
+    def data_prep(self, data):
         return data['close'].pct_change().iloc[1:].values
 
     # training function for the model, create the model, train it, and store in self.model
