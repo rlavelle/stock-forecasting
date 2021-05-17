@@ -18,4 +18,13 @@ class RandomForest(Model):
                                            random_state=3)
 
 if __name__ == '__main__':
-    pass
+    params = {
+        'n_estimators':1000,
+        'max_depth':25,
+        'max_samples':150,
+        'd':5,
+        'sigma':1
+    }
+
+    test = Test(Model=RandomForest, params=params, tests=paper_tests, f='ghmm-paper-tests.json', plot=True)
+    test.fixed_origin_tests(folder='random_forest')
