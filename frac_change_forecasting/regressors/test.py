@@ -175,8 +175,8 @@ class Test:
     def rolling_window_test(self, folder):
         # train on 1155 points, test on 10 points
         # slide window over by testing_size each time to get 10 tests
-        training_size = 1155
-        testing_size = 10
+        training_size = 1055
+        testing_size = 100
 
         for test in self.tests.values():
             # var to store error and test num
