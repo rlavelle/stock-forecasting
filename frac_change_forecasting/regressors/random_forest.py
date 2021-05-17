@@ -27,5 +27,5 @@ if __name__ == '__main__':
         'name':'RandomForestRegressor'
     }
 
-    test = Test(Model=RandomForest, params=params, tests=paper_tests, f='ghmm-paper-tests.json', plot=True)
+    test = Test(Model=RandomForest, params=params, tests=paper_tests, f='rf-paper-tests.json', plot=True)
     test.fixed_origin_tests(folder='random_forest')
