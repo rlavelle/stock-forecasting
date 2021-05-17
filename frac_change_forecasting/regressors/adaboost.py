@@ -2,6 +2,9 @@ from sklearn.ensemble import AdaBoostRegressor
 from sklearn.tree import DecisionTreeRegressor
 from model import *
 from test import *
+import math
+import time
+import numpy as np
 
 class AdaBoost(Model):
     def __init__(self, params):
@@ -25,11 +28,16 @@ if __name__ == '__main__':
         'name':'AdaBoostRegressor'
     }
 
-    test = Test(Model=AdaBoost, params=params, tests=paper_tests, f='ada-paper-tests.json', plot=True)
-    test.fixed_origin_tests(folder='adaboost')
+    # test = Test(Model=AdaBoost, params=params, tests=paper_tests, f='ada-paper-tests.json', plot=True)
+    # test.fixed_origin_tests(folder='adaboost')
 
-    test = Test(Model=AdaBoost, params=params, tests=own_tests, f='ada-own-tests.json', plot=True)
-    test.fixed_origin_tests(folder='adaboost')
+    # test = Test(Model=AdaBoost, params=params, tests=own_tests, f='ada-own-tests.json', plot=True)
+    # test.fixed_origin_tests(folder='adaboost')
 
+    start = time.time()
     test = Test(Model=AdaBoost, params=params, tests=rolling_window_tests, f='ada-rolling-tests.json', plot=True)
-    test.rolling_window_test(folder='adaboost')
+    results = test.rolling_window_test(folder='adaboost')
+    end = time.time()
+    print(f'time elapsed: {(end-start)/60}')
+    print(f'average R2 score: {np.average(list(results["R2"].values()))}')
+    print(f'average MAPE: {np.average(list(results["MAPE"].values()))}')

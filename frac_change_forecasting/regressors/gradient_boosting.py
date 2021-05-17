@@ -1,6 +1,9 @@
 from sklearn.ensemble import GradientBoostingRegressor
 from model import *
 from test import *
+import math
+import time
+import numpy as np
 
 class GradBoost(Model):
     def __init__(self, params):
@@ -33,11 +36,16 @@ if __name__ == '__main__':
         'name':'AdaBoostRegressor'
     }
 
-    test = Test(Model=GradBoost, params=params, tests=paper_tests, f='gb-paper-tests.json', plot=True)
-    test.fixed_origin_tests(folder='gradient_boosting')
+    # test = Test(Model=GradBoost, params=params, tests=paper_tests, f='gb-paper-tests.json', plot=True)
+    # test.fixed_origin_tests(folder='gradient_boosting')
 
-    test = Test(Model=GradBoost, params=params, tests=own_tests, f='gb-own-tests.json', plot=True)
-    test.fixed_origin_tests(folder='gradient_boosting')
+    # test = Test(Model=GradBoost, params=params, tests=own_tests, f='gb-own-tests.json', plot=True)
+    # test.fixed_origin_tests(folder='gradient_boosting')
 
+    start = time.time()
     test = Test(Model=GradBoost, params=params, tests=rolling_window_tests, f='gb-rolling-tests.json', plot=True)
-    test.rolling_window_test(folder='gradient_boosting')
+    test.rolling_window_test(folder='gradient_boosting')    
+    end = time.time()
+    print(f'time elapsed: {(end-start)/60}')
+    print(f'average R2 score: {np.average(list(results["R2"].values()))}')
+    print(f'average MAPE: {np.average(list(results["MAPE"].values()))}')

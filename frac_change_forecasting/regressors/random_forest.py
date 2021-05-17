@@ -3,6 +3,7 @@ from model import *
 from test import *
 import math
 import time
+import numpy as np
 
 class RandomForest(Model):
     def __init__(self, params):
