@@ -18,10 +18,9 @@ class Model(ABC):
     # wrapper model function for collecting fastquant data
     def get_data(self, ticker, start_date, end_date):
         return get_stock_data(ticker, start_date, end_date)
-
-    # plotting function for price prediction
-    def plot_prices(self, preds, title, folder):
-        # generate predicted closing prices
+    
+    # generate closing prices from fractional change predictions
+    def gen_prices(self, preds):
         pred_close = []
         closes = self.test_data['close'].values
         opens = self.test_data['open'].values[1:]
@@ -32,6 +31,11 @@ class Model(ABC):
                 pred_close.append(pred*closes[i-1]+closes[i-1])
         truth = self.test_data['close'].values[1:]
 
+        return pred_close.flatten(), truth.flatten()
+
+    # plotting function for price prediction
+    def plot_prices(self, preds, title, folder):
+        pred_close, truth = self.gen_prices(preds)
         fig, ax = plt.subplots(figsize=(15,5))
         ax.set_title(title)
         time = range(len(preds))
