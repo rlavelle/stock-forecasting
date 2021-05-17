@@ -149,8 +149,10 @@ class Test:
             self.model.train(train_data=train_data)
             x_test, preds, actuals = self.model.predict(test_data=test_data)
 
+            pred_close, truth = self.model.gen_prices(preds)
+
             # get and save error
-            error = self.model.mean_abs_percent_error(y_pred=preds, y_true=actuals)
+            error = self.model.mean_abs_percent_error(y_pred=pred_close, y_true=truth)
 
             self.results['MAPE'][f'{self.model.name}:{ticker}'] = error
             self.results['R2'][f'{self.model.name}:{ticker}'] = self.model.model.score(x_test, actuals)
@@ -203,8 +205,11 @@ class Test:
                 self.model.train(train_data=train_data)
                 x_test, preds, actuals = self.model.predict(test_data=test_data)
 
+                # get closing price predictions
+                pred_close, truth = self.model.gen_prices(preds)
+
                 # get error for this window
-                mape_error += self.model.mean_abs_percent_error(y_pred=preds, y_true=actuals)
+                mape_error += self.model.mean_abs_percent_error(y_pred=pred_close, y_true=truth)
                 r2_error += self.model.model.score(x_test, actuals)
                 test_n += 1
 
