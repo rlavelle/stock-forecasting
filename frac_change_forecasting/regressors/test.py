@@ -195,7 +195,7 @@ class Test:
                 train_data = window.iloc[i:i+training_size]
                 test_data = window.iloc[i+training_size:i+training_size+testing_size]
 
-                print(f'window {i+1}')
+                print(f'window {i//10}')
 
                 # make the model
                 self.model = self.Model(params=self.params)
@@ -212,8 +212,6 @@ class Test:
                 mape_error += self.model.mean_abs_percent_error(y_pred=pred_close, y_true=truth)
                 r2_error += self.model.model.score(x_test, actuals)
                 test_n += 1
-
-                print('DONE')
             
                 # use last window for plotting
                 if self.plot:
