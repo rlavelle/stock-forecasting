@@ -39,8 +39,8 @@ if __name__ == '__main__':
     test = Test(Model=RandomForest, params=params, tests=rolling_window_tests, f='rf-rolling-tests.json', plot=False)
     results = test.rolling_window_test(folder='random_forest')
     end = time.time()
-    print(f'time elapsed: {end-start/60}')
-    print(f'average R2 score: {np.average(results["R2"].values())}')
-    print(f'average MAPE: {np.average(results["MAPE"].values())}')
+    print(f'time elapsed: {(end-start)/60}')
+    print(f'average R2 score: {np.average(list(results["R2"].values()))}')
+    print(f'average MAPE: {np.average(list(results["MAPE"].values()))}')
 
 
