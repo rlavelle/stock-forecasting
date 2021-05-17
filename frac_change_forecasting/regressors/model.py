@@ -97,7 +97,7 @@ class Model(ABC):
         last = self.train_data.iloc[-1].to_dict()
         row = pd.DataFrame(last, index=[0])
         row['dt'] = None
-        self.test_data = self.test_data.reset_index()
+        self.test_data = test_data.reset_index()
         self.test_data = pd.concat([row,self.test_data], ignore_index=True)
 
         # convert the testing data and smooth
