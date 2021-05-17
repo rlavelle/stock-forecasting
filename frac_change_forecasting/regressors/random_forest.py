@@ -37,7 +37,7 @@ if __name__ == '__main__':
     # test.fixed_origin_tests(folder='random_forest')
 
     start = time.time()
-    test = Test(Model=RandomForest, params=params, tests=rolling_window_tests, f='rf-rolling-tests.json', plot=False)
+    test = Test(Model=RandomForest, params=params, tests=rolling_window_tests, f='rf-rolling-tests.json', plot=True)
     results = test.rolling_window_test(folder='random_forest')
     end = time.time()
     print(f'time elapsed: {(end-start)/60}')
