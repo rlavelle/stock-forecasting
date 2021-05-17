@@ -1,0 +1,1 @@
+{"R2": {"RandomForestRegressor:AAPL": 0.30970658058015377, "RandomForestRegressor:IBM": 0.3190317563137497}, "MAPE": {"RandomForestRegressor:AAPL": 23328.037278119045, "RandomForestRegressor:IBM": Infinity}}
