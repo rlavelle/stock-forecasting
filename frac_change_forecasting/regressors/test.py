@@ -9,13 +9,13 @@ import math
 paper_tests = {
     'test1': {
         'train':
-            {'ticker':'AAPL', 'start':'2003-02-10', 'end':'2004-09-12'},
+            {'ticker':'AAPL', 'start':'2000-01-01', 'end':'2004-09-13'},
         'test':
             {'ticker':'AAPL', 'start':'2004-09-13', 'end':'2005-01-22'}
     },
     'test2': {
         'train':
-            {'ticker':'IBM', 'start':'2003-02-10', 'end':'2004-09-12'},
+            {'ticker':'IBM', 'start':'2000-01-01', 'end':'2004-09-13'},
         'test':
             {'ticker':'IBM', 'start':'2004-09-13', 'end':'2005-01-22'}
     }
@@ -166,11 +166,11 @@ class Test:
         
         # write errors to file
         dump = json.dumps(self.results)
-        output_file = open(self.f, 'w')
+        output_file = open(f'../results/{folder}/{self.f}', 'w')
         output_file.write(dump)
         output_file.close()
 
-    def rolling_window_test(self):
+    def rolling_window_test(self, folder):
         # train on 1155 points, test on 10 points
         # slide window over by testing_size each time to get 10 tests
         training_size = 1155
@@ -224,7 +224,7 @@ class Test:
         
         # write errors to file
         dump = json.dumps(self.results)
-        output_file = open(self.f, 'w')
+        output_file = open(f'../results/{folder}/{self.f}', 'w')
         output_file.write(dump)
         output_file.close()
 
