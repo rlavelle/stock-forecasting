@@ -23,7 +23,8 @@ if __name__ == '__main__':
         'max_depth':25,
         'max_samples':150,
         'd':5,
-        'sigma':1
+        'sigma':1,
+        'name':'RandomForestRegressor'
     }
 
     test = Test(Model=RandomForest, params=params, tests=paper_tests, f='ghmm-paper-tests.json', plot=True)
