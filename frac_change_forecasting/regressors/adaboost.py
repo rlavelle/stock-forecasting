@@ -17,4 +17,19 @@ class AdaBoost(Model):
                                        random_state=3)
 
 if __name__ == '__main__':
-    pass
+    params = {
+        'n_estimators':250,
+        'max_depth':10,
+        'd':5,
+        'sigma':1,
+        'name':'AdaBoostRegressor'
+    }
+
+    test = Test(Model=AdaBoost, params=params, tests=paper_tests, f='ada-paper-tests.json', plot=True)
+    test.fixed_origin_tests(folder='adaboost')
+
+    test = Test(Model=AdaBoost, params=params, tests=own_tests, f='ada-own-tests.json', plot=True)
+    test.fixed_origin_tests(folder='adaboost')
+
+    test = Test(Model=AdaBoost, params=params, tests=rolling_window_tests, f='ada-rolling-tests.json', plot=True)
+    test.rolling_window_test(folder='adaboost')

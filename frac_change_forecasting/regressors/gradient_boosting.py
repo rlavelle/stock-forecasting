@@ -22,4 +22,22 @@ class GradBoost(Model):
                                                random_state=3)
 
 if __name__ == '__main__':
-    pass
+    params = {
+        'n_estimators':250,
+        'loss':'huber',
+        'lr':0.1,
+        'subsample':0.9,
+        'max_depth':10,
+        'd':5,
+        'sigma':1,
+        'name':'AdaBoostRegressor'
+    }
+
+    test = Test(Model=GradBoost, params=params, tests=paper_tests, f='gb-paper-tests.json', plot=True)
+    test.fixed_origin_tests(folder='gradient_boosting')
+
+    test = Test(Model=GradBoost, params=params, tests=own_tests, f='gb-own-tests.json', plot=True)
+    test.fixed_origin_tests(folder='gradient_boosting')
+
+    test = Test(Model=GradBoost, params=params, tests=rolling_window_tests, f='gb-rolling-tests.json', plot=True)
+    test.rolling_window_test(folder='gradient_boosting')

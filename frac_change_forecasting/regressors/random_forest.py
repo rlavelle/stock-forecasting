@@ -29,3 +29,9 @@ if __name__ == '__main__':
 
     test = Test(Model=RandomForest, params=params, tests=paper_tests, f='rf-paper-tests.json', plot=True)
     test.fixed_origin_tests(folder='random_forest')
+
+    test = Test(Model=RandomForest, params=params, tests=own_tests, f='rf-own-tests.json', plot=True)
+    test.fixed_origin_tests(folder='random_forest')
+
+    test = Test(Model=RandomForest, params=params, tests=rolling_window_tests, f='rf-rolling-tests.json', plot=True)
+    test.rolling_window_test(folder='random_forest')
