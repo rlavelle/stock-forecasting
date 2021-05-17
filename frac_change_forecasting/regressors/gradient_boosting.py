@@ -44,7 +44,7 @@ if __name__ == '__main__':
 
     start = time.time()
     test = Test(Model=GradBoost, params=params, tests=rolling_window_tests, f='gb-rolling-tests.json', plot=True)
-    test.rolling_window_test(folder='gradient_boosting')    
+    results = test.rolling_window_test(folder='gradient_boosting')    
     end = time.time()
     print(f'time elapsed: {(end-start)/60}')
     print(f'average R2 score: {np.average(list(results["R2"].values()))}')
