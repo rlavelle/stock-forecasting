@@ -1,0 +1,1 @@
+{"R2": {"AdaBoostRegressor:AAPL": 0.3938392716893778, "AdaBoostRegressor:IBM": 0.3257158417957836}, "MAPE": {"AdaBoostRegressor:AAPL": 1.9581577870409315, "AdaBoostRegressor:IBM": 0.6621855767956438}}
