@@ -31,7 +31,8 @@ class Model(ABC):
                 pred_close.append(pred*closes[i-1]+closes[i-1])
         truth = self.test_data['close'].values[1:]
 
-        return pred_close.flatten(), truth.flatten()
+        print(pred_close)
+        return pred_close, truth.flatten()
 
     # plotting function for price prediction
     def plot_prices(self, preds, title, folder):
