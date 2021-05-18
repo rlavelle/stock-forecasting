@@ -33,7 +33,7 @@ if __name__ == '__main__':
         'max_depth':10,
         'd':5,
         'sigma':1,
-        'name':'AdaBoostRegressor'
+        'name':'GradientBoostRegressor'
     }
 
     # test = Test(Model=GradBoost, params=params, tests=paper_tests, f='gb-paper-tests.json', plot=True)
