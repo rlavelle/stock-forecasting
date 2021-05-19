@@ -47,7 +47,7 @@ class SMA(Model):
 
 if __name__ == "__main__":
     params = {'d': 3,
-              'name': 'SMA-10'}
+              'name': 'SMA-3'}
     
     test = Test(Model=SMA, params=params, tests=paper_tests, f='sma-3-paper-tests.json', plot=True)
     test.fixed_origin_tests()
@@ -55,5 +55,5 @@ if __name__ == "__main__":
     test = Test(Model=SMA, params=params, tests=own_tests, f='sma-3-own-tests.json', plot=True)
     test.fixed_origin_tests()
 
-    test = Test(Model=SMA, params=params, tests=rolling_window_tests, f='sma-3-rolling-tests.json', plot=True)
+    test = Test(Model=SMA, params=params, tests=rolling_window_tests, f='sma-3-rolling-tests.json', plot=False)
     test.rolling_window_test()
