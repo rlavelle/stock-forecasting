@@ -1,7 +1,21 @@
 # Stock Forecasting 
+Attempting to predict next day closing prices of securities using a variety of models. 
 
-## Preliminary Results
-Mean Absolute Percentage Errors
+The `frac_change_forecasting` contains 
+- `hmms` which has all of the continuos hidden markov model variations, along with a simple moving average model.
+- `imgs` contains the result graphs for all models in the `frac_change_forecasting` folder
+- `regressors` contains the various regression models used for prediction
+- `results` contains all the results in json files for the proposed models, regression results have both `R2` scores and `MAPE` scores
+- `rnns` contains various recurrent neural network models 
+
+The `gauss_smoothing` folder contains experiment work for using gaussian smoothing in an attempt to avoid overfitting when using LSTMs.
+
+The `trading` folder contains scratch work that will be used to automate the sending of emails when a trading strategy is decided upon.
+
+
+# Preliminary Results
+
+## Mean Absolute Percentage Errors (MAPE)
 
 |        |               | Regressor |                   | Simple Moving Average |
 |--------|:-------------:|-----------|-------------------|-----------------------|
@@ -14,10 +28,18 @@ Mean Absolute Percentage Errors
 | TMO    | 1.095         | 1.062     | 1.048             | 1.353                 |
 | Avg    | 1.119         | 1.090     | 1.076             | 1.307                 |
 
-### Simple Moving Average Graphs Examples (d=3)
+# Graph Examples
+
+## Simple Moving Average (d=3)
 ![](https://github.com/rlavelle/stock-forecasting/blob/master/frac_change_forecasting/imgs/sma/SMA-3%20IBM%20forcasted%20vs%20actual%20stock%20prices%202004-09-13%20to%202005-01-22.png)
-![](https://github.com/rlavelle/stock-forecasting/blob/master/frac_change_forecasting/imgs/sma/SMA-3%20AMZN%20forcasted%20vs%20actual%20stock%20prices%202015-01-02%20to%202016-01-02.png)
 ![](https://github.com/rlavelle/stock-forecasting/blob/master/frac_change_forecasting/imgs/sma/SMA-3%20GOOGL%20forcasted%20vs%20actual%20stock%20prices%202015-01-02%20to%202016-01-02.png)
+
+## Gradient Boosting Reegression
+![](https://github.com/rlavelle/stock-forecasting/blob/master/frac_change_forecasting/imgs/gradient_boosting/GradientBoostRegressor%20IBM%20forcasted%20vs%20actual%20fractional%20price%20change%202004-09-13%20to%202005-01-22.png)
+![](https://github.com/rlavelle/stock-forecasting/blob/master/frac_change_forecasting/imgs/gradient_boosting/GradientBoostRegressor%20IBM%20forcasted%20vs%20actual%20stock%20price%20(%24)%202004-09-13%20to%202005-01-22.png)
+![](https://github.com/rlavelle/stock-forecasting/blob/master/frac_change_forecasting/imgs/gradient_boosting/GradientBoostRegressor%20GOOGL%20forcasted%20vs%20actual%20fractional%20price%20change%202015-01-02%20to%202016-01-02.png)
+![](https://github.com/rlavelle/stock-forecasting/blob/master/frac_change_forecasting/imgs/gradient_boosting/GradientBoostRegressor%20GOOGL%20forcasted%20vs%20actual%20stock%20price%20(%24)%202015-01-02%20to%202016-01-02.png)
+
 
 # Requirements
 
