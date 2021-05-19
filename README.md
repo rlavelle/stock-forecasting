@@ -1,14 +1,18 @@
 # Stock Forecasting 
 Attempting to predict next day closing prices of securities using a variety of models. 
 
+
 The `frac_change_forecasting` folder contains 
 - `hmms` which has all of the continuos hidden markov model variations, along with a simple moving average model.
 - `imgs` contains the result graphs for all models in the `frac_change_forecasting` folder
 - `regressors` contains the various regression models used for prediction
 - `results` contains all the results in json files for the proposed models, regression results have both `R2` scores and `MAPE` scores
 - `rnns` contains various recurrent neural network models 
+Almost all `py` files that contain models have a main function that will run test suites which are defined in `test.py`. Each set of models tests differently so there are multiple `test.py` files throughout this folder
+
 
 The `gauss_smoothing` folder contains experiment work for using gaussian smoothing in an attempt to avoid overfitting when using LSTMs.
+
 
 The `trading` folder contains scratch work that will be used to automate the sending of emails when a trading strategy is decided upon.
 
