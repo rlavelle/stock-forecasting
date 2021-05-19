@@ -13,7 +13,7 @@ The `frac_change_forecasting` folder contains
 Almost all `py` files that contain models have a main function that will run test suites which are defined in `test.py`. Each set of models tests differently so there are multiple `test.py` files throughout this folder
 
 
-The `gauss_smoothing` folder contains experiment work for using gaussian smoothing in an attempt to avoid overfitting when using LSTMs.
+The `gauss_smoothing` folder contains experiment work for using gaussian smoothing in an attempt to avoid overfitting when using LSTMs. This work was later used to improve the generalizability of the regression models since the curves are very noisy due to volatility within stocks. 
 
 
 The `trading` folder contains scratch work that will be used to automate the sending of emails when a trading strategy is decided upon.
