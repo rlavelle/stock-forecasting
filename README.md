@@ -8,6 +8,8 @@ The `frac_change_forecasting` folder contains
 - `regressors` contains the various regression models used for prediction
 - `results` contains all the results in json files for the proposed models, regression results have both `R2` scores and `MAPE` scores
 - `rnns` contains various recurrent neural network models 
+
+
 Almost all `py` files that contain models have a main function that will run test suites which are defined in `test.py`. Each set of models tests differently so there are multiple `test.py` files throughout this folder
 
 
