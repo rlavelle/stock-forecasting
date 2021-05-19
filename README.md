@@ -1,7 +1,7 @@
 # Stock Forecasting 
 Attempting to predict next day closing prices of securities using a variety of models. 
 
-The `frac_change_forecasting` contains 
+The `frac_change_forecasting` folder contains 
 - `hmms` which has all of the continuos hidden markov model variations, along with a simple moving average model.
 - `imgs` contains the result graphs for all models in the `frac_change_forecasting` folder
 - `regressors` contains the various regression models used for prediction
