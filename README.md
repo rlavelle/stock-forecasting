@@ -1,5 +1,7 @@
 # Stock Forecasting 
-Attempting to predict next day closing prices of securities using a variety of models. 
+Attempting to predict next day closing prices of securities using a variety of models. A paper with preliminary results and findings can be found within `stock_forecasting.pdf`.
+
+- Rowan Lavelle | <rowan.lavelle@gmail.com>
 
 
 The `frac_change_forecasting` folder contains 
